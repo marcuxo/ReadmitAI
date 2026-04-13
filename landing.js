@@ -66,40 +66,40 @@ function setupNavScroll() {
   });
 }
 
-// ── Form submission ────────────────────────────────────────────
+// ── Datos de prueba (demo) ──────────────────────────────────────
+const MOCK_DATA = {
+  probability: 0.72,
+  risk_label: "Se recomienda seguimiento intensivo y plan de egreso personalizado.",
+  shap_values: [0.085, 0.042, -0.018, 0.063, -0.005, 0.192, 0.031, 0.055, -0.012, 0.034, 0.027, 0.019, -0.041, 0.068, -0.023, 0.015],
+  features: FEATURE_LABELS,
+  timestamp: new Date().toLocaleString("es-CL"),
+};
+
+// ── Form submission (modo demo con datos de prueba) ────────────
 document.getElementById("patient-form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const btn = document.getElementById("btn-predict");
+  const resultPanel = document.getElementById("result-panel");
+
+  // Si el resultado ya está visible, ocultarlo y volver al formulario
+  if (resultPanel.style.display === "block") {
+    resetPrediction();
+    return;
+  }
+
   btn.disabled = true;
   btn.innerHTML = '<span class="btn-icon">⏳</span> Procesando…';
 
-  const payload = {};
-  for (const id of FIELD_IDS) {
-    const el = document.getElementById(id);
-    payload[id] = parseInt(el.value, 10);
-  }
+  // Simular un pequeño delay para la experiencia de usuario
+  await new Promise((resolve) => setTimeout(resolve, 800));
 
-  try {
-    const response = await fetch(`${API_URL}/predict`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+  // Usar datos de prueba con timestamp actualizado
+  const demoData = { ...MOCK_DATA, timestamp: new Date().toLocaleString("es-CL") };
+  showResult(demoData);
 
-    if (!response.ok) {
-      const err = await response.json();
-      throw new Error(err.detail || `Error ${response.status}`);
-    }
-
-    const data = await response.json();
-    showResult(data);
-  } catch (error) {
-    showError(error.message);
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = '<span class="btn-icon">🔍</span> Predecir riesgo de readmisión';
-  }
+  btn.disabled = false;
+  btn.innerHTML = '<span class="btn-icon">🔍</span> Predecir riesgo de readmisión';
 });
 
 // ── Show result ────────────────────────────────────────────────

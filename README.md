@@ -65,7 +65,8 @@ Landingpage/
 │   ├── 2.png
 │   ├── 3.png
 │   ├── 4.png
-│   └── 5.png
+│   ├── 5.png
+│   └── prediccion.png
 └── README.md        # Este archivo
 ```
 
@@ -105,6 +106,13 @@ Formulario interactivo para ingresar datos de hospitalización, historial del pa
 Sección de exámenes y medicamentos, diagnósticos, botón de predicción y pie de página del proyecto.
 
 ![Formulario de Predicción - Parte inferior y Footer](Capturas/5.png)
+
+---
+
+### 6. Resultado de Predicción
+Panel de resultado tras ejecutar la predicción, mostrando el nivel de riesgo, probabilidad de readmisión, recomendación clínica y los factores más influyentes según SHAP.
+
+![Resultado de Predicción](Capturas/prediccion.png)
 
 ---
 
