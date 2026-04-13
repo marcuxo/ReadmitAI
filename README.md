@@ -2,7 +2,7 @@
 
 Landing page del proyecto **ReadmitAI**, un sistema de predicción basado en Machine Learning para identificar pacientes diabéticos con riesgo de reingreso hospitalario dentro de 30 días.
 
-> **ACIF104 · Aprendizaje Automático · Universidad Andrés Bello · 2025**  
+> **ACIF104 · Aprendizaje Automático · Universidad Andrés Bello · 2026**  
 > Ingeniería Civil Informática · Grupo 3, Semana 6
 
 ---
